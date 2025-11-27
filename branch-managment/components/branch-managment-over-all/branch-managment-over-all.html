@@ -1,0 +1,96 @@
+<div class="overall-container">
+  <div
+    class="branch-container"
+    *ngFor="let prop of props; trackBy: trackBybranchId"
+  >
+    <div class="branch-body">
+      <div class="branch-body-left">
+        <lucide-icon [img]="location" class="location-icon"></lucide-icon>
+      </div>
+      <div class="branch-body-right">
+        <div class="branch-header">
+          <div class="header-top">
+            <h2>{{ prop.branchName }}</h2>
+            <p
+              class="date-text grey-text"
+              [ngClass]="{ inactive: prop.status === 'inactive' }"
+            >
+              التاريخ : <span class="primary-text">{{ prop.date }}</span>
+            </p>
+            <div class="status-container">
+              <span
+                class="status"
+                [ngClass]="{
+                  'active-status': prop.status === 'active',
+                  'inactive-status': prop.status === 'inactive'
+                }"
+              >
+                {{ prop.status === "active" ? "فعال" : "غير فعال" }}
+              </span>
+              <app-toggle-switch
+                [checked]="prop.status === 'active'"
+                (toggleChange)="onToggleChange(prop, $event)"
+              >
+              </app-toggle-switch>
+            </div>
+          </div>
+          <p class="grey-text">
+            {{ prop.address }}
+          </p>
+        </div>
+        <hr />
+        <div class="branch-content">
+          <div
+            class="warning-desc"
+            [ngClass]="{ 'inactive-desc': prop.status === 'inactive' }"
+            *ngIf="prop.status === 'inactive'"
+          >
+            <p class="inactive-desc-text">{{ prop.inactiveDesc }}</p>
+            <lucide-icon [img]="warning" class="warning-icon"></lucide-icon>
+          </div>
+          <div class="active-desc" *ngIf="prop.status === 'active'">
+            <div class="group">
+              <div class="group-header">
+                <lucide-icon [img]="users" class="users-icon"></lucide-icon>
+                <h4 class="title">المواعيد</h4>
+              </div>
+              <p class="sub-title">
+                {{ prop.totalAppointmentCount }} / {{ prop.completedCount }}
+              </p>
+            </div>
+            <div class="group">
+              <div class="group-header">
+                <lucide-icon [img]="users" class="users-icon"></lucide-icon>
+                <h4 class="title">ساعات العمل</h4>
+              </div>
+              <p class="sub-title">{{ prop.workingHours }}</p>
+            </div>
+            <div class="group">
+              <div class="group-header">
+                <lucide-icon [img]="users" class="users-icon"></lucide-icon>
+                <h4 class="title">وقت الانتظار</h4>
+              </div>
+              <p class="sub-title">{{ prop.waitTime }}</p>
+            </div>
+            <div class="group">
+              <div class="group-header">
+                <lucide-icon [img]="users" class="users-icon"></lucide-icon>
+                <h4 class="title">المواعيد التي تم الغاءها</h4>
+              </div>
+              <p class="sub-title">{{ prop.workingHours }}</p>
+            </div>
+          </div>
+          <div class="footer">
+            <app-custom-button
+              [hasIcon]="true"
+              [iconSrc]="settingPrimary"
+              [variant]="'secondary'"
+              [size]="'medium'"
+              [text]="'الاعدادات'"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+<snackbar-alert
+    [message]="nackbarMessage3"
+    [type]="snackbarType3"
+    [isVisible]="showSnackbar3"
+  >
+  </snackbar-alert>>
+
+<div class="add-holiday-container">
+  <app-form-card (closeform)="onClose()" title="اضافة إجازة">
+    <form [formGroup]="addHolidayForm" (ngSubmit)="onSubmit()">
+      <app-form-input
+        label=" اسم الاجازة"
+        [icon]="icons.folder"
+        type="text"
+        id="holidayName"
+        formControlName="holidayName"
+        controlName="holidayName"
+        placeholder="ادخل اسم الاجازة"
+        size="md"
+        [control]="holidayNameControl"
+        [errorMessages]="{
+              required: 'هذا الحقل مطلوب',
+              minlength: 'اسم الاجازة يجب ان يكون اكثر من 3 حروف',
+            }"
+      />
+
+      <app-multi-select
+        [label]="'الفروع المغلقة أثناء الإجازة'"
+        [options]="branchOptions"
+        [selectedValues]="selectedBranches"
+        [allText]="'جميع الفروع'"
+        [singularText]="'فرع محدد'"
+        [pluralText]="'فروع محددة'"
+        [dropdownKey]="'branch'"
+        (selectionChange)="onBranchSelectionChange($event)"
+      >
+      </app-multi-select>
+
+      <div class="date-picker-container">
+        <app-form-input
+          type="datepicker"
+          [fullWidth]="true"
+          id="holidayDate"
+          formControlName="holidayDate"
+          controlName="holidayDate"
+          placeholder="اختر تاريخ الإجازة"
+          [datePickerType]="holidayDateType"
+          [showDatePickerToggle]="true"
+          [startPlaceholder]="'تاريخ بداية الإجازة'"
+          [endPlaceholder]="'تاريخ نهاية الإجازة'"
+          [singleDatePlaceholder]="'تاريخ الإجازة'"
+          [control]="holidayDateControl"
+          (dateRangeChange)="onDateRangeChange($event)"
+          (singleDateChange)="onSingleDateChange($event)"
+          (cleared)="onDateCleared()"
+          [errorMessages]="{
+            required: 'هذا الحقل مطلوب'
+          }"
+        />
+      </div>
+
+      <app-form-input
+        label="وصف الإجازة"
+        [icon]="icons.folder"
+        type="textarea"
+        id="holidayDesc"
+        formControlName="holidayDesc"
+        controlName="holidayDesc"
+        placeholder="ادخل وصف الإجازة"
+        [control]="holidayDescControl"
+        [rows]="4"
+        style="width: 100% !important"
+      ></app-form-input>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">حفظ</button>
+        <button type="button" class="btn-secondary" (click)="onClose()">
+          إلغاء
+        </button>
+      </div>
+    </form>
+  </app-form-card>
+</div>

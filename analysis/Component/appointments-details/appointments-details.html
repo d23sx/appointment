@@ -1,0 +1,55 @@
+<div class="container">
+  <app-card-appointment style="padding: 0px 0px">
+    <h4>جدول مواعيد العملاء</h4>
+    <div class="table">
+      <reuseable-data-table
+        [data]="clientAppointmentsData"
+        [columns]="clientTableColumns"
+        [config]="clientTableConfig"
+        [filterOptions]="filterOptions"
+        [entityType]="'المواعيد'"
+        [entityIcon]="icons.appointment"
+        [searchFields]="['cpr', 'place']"
+        [dateFields]="['appointmentDate']"
+        [availableFilters]="{
+          search: true,
+          dateRange: true,
+          dayFilter: false,
+          statusFilter: false,
+          branchFilter: true,
+          customFilters: false
+        }"
+      ></reuseable-data-table>
+    </div>
+  </app-card-appointment>
+
+
+
+  <app-cards-container style="flex-direction: column" [cards]="list">
+  </app-cards-container>
+</div>
+
+
+    <app-card-appointment style="padding: 40px 38px">
+    <h4> جدول مواعيد المخلصين </h4>
+    <div class="table">
+      <reuseable-data-table
+        [data]="agentAppointmentsData"
+        [columns]="agentTableColumns"
+        [config]="agentTableConfig"
+        [filterOptions]="filterOptions"
+        [entityType]="'مواعيد المخلصين'"
+        [entityIcon]="icons.appointment"
+        [searchFields]="['cpr', 'place']"
+        [dateFields]="['appointmentDate']"
+        [availableFilters]="{
+          search: true,
+          dateRange: true,
+          dayFilter: false,
+          statusFilter: false,
+          branchFilter: true,
+          customFilters: false
+        }"
+      ></reuseable-data-table>
+    </div>
+  </app-card-appointment>

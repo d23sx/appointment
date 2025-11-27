@@ -1,0 +1,76 @@
+<div class="container">
+  <app-section-name
+    title=" التقارير والتحليلات "
+    [showComponent]="false"
+    [showText]="true"
+  >
+    <button id="exportBtn" (click)="showExport()">تصدير</button>
+  </app-section-name>
+
+  <div *ngIf="showexport">
+    <app-form-card
+      title=" طباعة التقرير "
+      (closeform)="this.showexport = false"
+    >
+      <div class="input">
+        <label>الفرع</label>
+        <select
+          label="الفرع"
+          id="branch"
+          placeholder="الفرع"
+          [(ngModel)]="name"
+          [disabled]="isExporting"
+        >
+          <option *ngFor="let option of branchOptions" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+      </div>
+
+      <div class="input">
+        <label>التاريخ</label>
+        <app-date-picker
+          (dateRangeChange)="setdate($event)"
+          mode="range"
+          [disabled]="isExporting"
+        />
+      </div>
+
+      <br />
+      <button
+        id="printBtn"
+        (click)="print($event)"
+        [disabled]="isExporting"
+        [class.loading]="isExporting"
+      >
+        <span *ngIf="!isExporting">تصدير</span>
+        <span *ngIf="isExporting">جاري التصدير...</span>
+      </button>
+    </app-form-card>
+  </div>
+
+  <div class="top-container">
+    <app-header-tab
+      [tabs]="tabs"
+      [activeTab]="activeTab"
+      (tabChanged)="onTabChanged($event)"
+    ></app-header-tab>
+  </div>
+</div>
+<app-overveiw
+  *ngIf="activeTab === 'viewAll'"
+  (veiwTicket)="onTabChanged('viewTicketsAttendance')"
+></app-overveiw>
+
+<app-appointments-details
+  *ngIf="activeTab === 'Appointments '"
+></app-appointments-details>
+
+<app-periods-report *ngIf="activeTab === 'viewPeriodReport'">
+</app-periods-report>
+<tickets-attendance
+  *ngIf="activeTab === 'viewTicketsAttendance'"
+></tickets-attendance>
+<app-overall-analysis
+  *ngIf="activeTab === 'viewOverallAnalysis'"
+></app-overall-analysis>

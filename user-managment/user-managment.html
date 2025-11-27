@@ -1,0 +1,17 @@
+<div class="veiw">
+  <app-section-name
+  title="إدارة المستخدمين"
+  [showComponent]="false"
+  [showText]="true"
+>
+</app-section-name>
+
+<app-cards-container
+  [cards]="list"
+  [conditionalStyling]='[
+        { condition: "title.includes(\"غير\")", class: "failed" },
+        { condition: "title.includes(\"فعال\")", class: "sucess" },
+
+  ]'/>
+
+<app-employees-table></app-employees-table>

@@ -1,0 +1,90 @@
+<div class="tickets-attendance-container">
+  <div class="tickets-attendance-right">
+    <div class="right-header">
+      <div class="right">
+        <div class="header-top">
+          <div class="input-group">
+            <h5>فترة التاريخ</h5>
+            <app-date-picker
+              label="اختر الفترة"
+              type="range"
+              startPlaceholder="من تاريخ"
+              endPlaceholder="إلى تاريخ"
+              [customDimensions]="{width: '300px'}"
+              [dateRange]="selectedDateRange"
+              (dateRangeChange)="onDateRangeChange($event)" />
+          </div>
+          <div class="input-group">
+            <h5>الفرع</h5>
+            <app-select-list
+              [options]="branches"
+              [placeholder]="'اختر الفرع'"
+              (selectionChange)="onBranchChange($event)"
+              [customDimensions]="{maxWidth: '300px'}"
+              size="sm"
+            />
+          </div>
+        </div>
+        <div class="header-bottom">
+          <div class="input-group">
+            <h5>نوع التقرير</h5>
+            <app-select-list
+              [options]="report"
+              [placeholder]="'اختر التقرير'"
+              (selectionChange)="onReportChange($event)"
+              [fullWidth]="true"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="left">
+        <app-custom-button
+          [text]="buttonText"
+          [type]="buttonType"
+          [variant]="buttonVarient"
+          (buttonClick)="onShowReport()" />
+      </div>
+    </div>
+
+    <!-- Simple table with pagination -->
+    <div class="right-body" *ngIf="showTable">
+      <reuseable-data-table
+        [data]="tableData"
+        [columns]="tableColumns"
+        [config]="tableConfig"
+        [entityIcon]="'ticket'"
+        [entityType]="'التذاكر'"
+        [searchFields]="['personalNumber', 'userName', 'location', 'branchName']"
+        [enableAdvancedFilters]="false"
+        [enableExport]="true"
+        [enableBulkActions]="false"
+        [availableFilters]="{
+          search: true,
+          dateRange: false,
+          dayFilter: false,
+          statusFilter: false,
+          branchFilter: false,
+          customFilters: false
+        }"
+        [noResultsConfig]="{
+          icon: '🎫',
+          title: 'لا توجد تذاكر',
+          description: 'لم يتم العثور على تذاكر تطابق معايير البحث المحددة'
+        }"
+        (searchChange)="onTableSearchChange($event)"
+        (pageChange)="onTablePageChange($event)"
+        (exportRequest)="onTableExportRequest($event)">
+      </reuseable-data-table>
+    </div>
+  </div>
+
+  <div class="tickets-attendance-left">
+    <div class="left-header">
+      <h3>حالة التذكرة</h3>
+      <small>نظرة عامة على جميع أنشطة التذاكر</small>
+    </div>
+    <div class="left-body">
+      <app-ticket-card [tickets]="tickets"></app-ticket-card>
+    </div>
+  </div>
+</div>

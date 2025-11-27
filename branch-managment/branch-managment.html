@@ -1,0 +1,46 @@
+<snackbar-alert
+  [message]="snackbarMessage3"
+  [type]="snackbarType3"
+  [isVisible]="showSnackbar3"
+>
+</snackbar-alert>
+
+<div class="container">
+  <div class="branch-management-container">
+    <app-section-name
+      title="إدارة الفروع"
+      [showComponent]="addBranchForm ? false : true"
+      [componentText]="'إضافة فرع'"
+      [sectionActionText]="'إضافة فرع'"
+      (triggerForm)="add()"
+      [btnSize]="'large'"
+    />
+
+    <div *ngIf="addBranchForm; else activebar">
+      <app-add-branch (showForm)="addBranchForm = false"></app-add-branch>
+    </div>
+
+    <ng-template #activebar>
+      <div class="tab-container">
+        <app-header-tab
+          [tabs]="tabs"
+          [activeTab]="activeTab"
+          (tabChanged)="onTabChanged($event)"
+        />
+      </div>
+      <branch-managment-over-all
+        *ngIf="activeTab === 'viewAll'"
+        (navigateToSettings)="onNavigateToSettings($event)"
+      ></branch-managment-over-all>
+      <branch-managment-settings
+        *ngIf="activeTab === 'viewSettings'"
+        [selectedBranch]="selectedBranch"
+        (navigateBack)="onNavigateBack()"
+        (showsucess)="showSucessmessage()"
+      ></branch-managment-settings>
+      <branch-managment-holiday
+        *ngIf="activeTab === 'viewVacation'"
+      ></branch-managment-holiday>
+    </ng-template>
+  </div>
+</div>

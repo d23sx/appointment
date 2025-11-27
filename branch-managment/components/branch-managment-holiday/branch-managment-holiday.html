@@ -1,0 +1,49 @@
+<div class="holiday-container">
+    <app-section-name
+    title="الاجازات الرسمية"
+    [showComponent]="true"
+    [sectionActionText]="'إضافة اجازة'"
+    [sectionTitleSize]  ="'sm'"
+    [btnSize]="'small'"
+    (triggerForm)="onAddFormTrigger()"
+    />
+    <add-holiday *ngIf="getshowAddForm()" (closeAddForm)="hideAdd()" (addHoliday)="onAddHoliday($event)"></add-holiday>
+
+    <edit-holiday
+        *ngIf="showEditForm"
+        [holiday]="selectedHoliday"
+        [branches]="branches"
+        (closeEditForm)="hideEdit()"
+        (updateHoliday)="onUpdateHoliday($event)">
+    </edit-holiday>
+
+    <div class="holiday-body" >
+        <div class="holiday-card" *ngFor="let holiday of holidays; trackBy: trackById" [ngClass]="{'past-holiday': isPastHoliday(holiday)}">
+            <div class="holiday-card-left">
+                <h4>{{ holiday.holidayName }}</h4>
+                <p class="holiday-date" *ngIf="!holiday.isDateRange">{{ holiday.singleDate | date:'yyyy-MM-dd' }}</p>
+                <p class="holiday-date" *ngIf="holiday.isDateRange">{{ holiday.startDate | date:'yyyy-MM-dd' }} - {{ holiday.endDate | date:'yyyy-MM-dd' }}</p>
+                <!-- <p class="holiday-branches" *ngIf="holiday.affectedBranchCount">عدد الفروع المتأثرة: {{ holiday.affectedBranchCount }}</p> -->
+                <p class="holiday-desc" *ngIf="holiday.holidayDesc">{{ holiday.holidayDesc }}</p>
+                <span *ngIf="isPastHoliday(holiday)" class="holiday-status past-status">انتهت</span>
+            </div>
+            <div class="holiday-card-right" *ngIf="!isPastHoliday(holiday)">
+                <app-custom-button
+                    [hasIcon]="true"
+                    [iconSrc]="edit"
+                    [text]="'تعديل'"
+                    [size]="'small'"
+                    (click)="onEditHoliday(holiday)"
+                />
+                <app-custom-button
+                    [hasIcon]="true"
+                    [iconSrc]="delete"
+                    [text]="'حذف'"
+                    [size]="'small'"
+                    [variant]="'danger'"
+                    (click)="onDeleteHoliday(holiday.id)"
+                />
+            </div>
+        </div>
+    </div>
+</div>

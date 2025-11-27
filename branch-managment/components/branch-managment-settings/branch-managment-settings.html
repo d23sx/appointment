@@ -1,0 +1,234 @@
+<app-message-box
+  [message]="snackbarMessage1"
+  [type]="snackbarType1"
+  [isVisible]="showSnackbar1"
+  (dismissed)="onSnackbarDismissed()"
+  (actionClicked)="saveSettings()"
+></app-message-box>
+
+<app-message-box
+  [message]="snackbarMessage2"
+  [type]="snackbarType2"
+  [isVisible]="showSnackbar2"
+  (dismissed)="onSnackbarDismissed2()"
+  (actionClicked)="onSnackbarDismissed2()"
+></app-message-box>
+
+<div class="branch-settings-container">
+  <div class="branch-settings-header">
+    <div class="header-content">
+      <app-custom-button
+        [variant]="'secondary'"
+        [size]="'medium'"
+        [text]="'رجوع'"
+        (click)="navigateBack.emit()"
+        class="back-button"
+      >
+      </app-custom-button>
+      <h1>إعدادات الفرع</h1>
+    </div>
+  </div>
+
+  <div class="branch-settings-form" [formGroup]="settingsForm">
+    <!-- First Row -->
+    <div class="form-row two-columns">
+      <div class="form-group">
+        <div class="input-container">
+          <app-form-input
+            label="اسم الفرع"
+            placeholder="مدينة عيسى"
+            type="text"
+            class="custom-input"
+            [icon]="icons.branch"
+            formControlName="branchName"
+            [control]="branchName"
+            [errorMessages]="{
+              required: 'هذا الحقل مطلوب',
+           
+            }"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-container">
+          <app-form-input
+            label="العنوان"
+            placeholder="Building 1088, Road 4025, Block 840, Isa Town"
+            formControlName="branchAddress"
+            [control]="branchAddress"
+            [errorMessages]="{
+              required: 'هذا الحقل مطلوب',
+           
+            }"
+          ></app-form-input>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Row -->
+    <div class="form-row two-columns">
+      <div class="form-group">
+        <div class="time-container">
+          <app-form-input
+            type="timepicker"
+            label="ساعات العمل"
+            [timePickerType]="'range'"
+            [startTimePlaceholder]="'بداية'"
+            [endTimePlaceholder]="'نهاية'"
+            [use24HourFormat]="false"
+            [minuteStep]="30"
+            [minTime]="'06:00'"
+            [maxTime]="'22:00'"
+            formControlName="workingHours"
+            [control]="workingHour"
+            [errorMessages]="{
+              required: 'هذا الحقل مطلوب',
+           
+            }"
+          >
+          </app-form-input>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-container dropdown">
+          <app-multi-select
+            [label]="'أيام العمل'"
+            [options]="daysOptions"
+            [placeholder]="'اختر الأيام'"
+            [selectIcon]="icons.calendar"
+            [selectedValues]="selectedDays"
+            [customDimensions]="{ width: '100%' }"
+            (selectionChange)="onWorkingDaysChange($event)"
+            [control]="workingDay"
+            [errorMessages]="{
+              required: 'هذا الحقل مطلوب',
+           
+            }"
+          ></app-multi-select>
+        </div>
+      </div>
+    </div>
+    <!-- Third Row -->
+    <div class="form-row three-columns">
+      <div class="form-group">
+        <div class="input-container">
+          <app-form-input
+            type="select"
+            label="الحالة"
+            [options]="statusSelectOptions"
+            placeholder="اختر الحالة"
+            formControlName="status"
+            [size]="'lg'"
+            [control]="status"
+            [errorMessages]="{
+              required: 'هذا الحقل مطلوب',
+           
+            }"
+          ></app-form-input>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-container">
+          <app-form-input
+            label="عدد الكاونترات"
+            placeholder="عدد الكاونترات"
+            type="number"
+            class="custom-input"
+            formControlName="counterCount"
+            [control]="counterCount"
+            [errorMessages]="{
+              required: 'هذا الحقل مطلوب',
+           
+            }"
+          ></app-form-input>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-container">
+          <app-form-input
+            label="عدد الموظفين"
+            placeholder="عدد الموظفين"
+            type="number"
+            class="custom-input"
+            formControlName="employeeCount"
+            [control]="employeeCount"
+            [errorMessages]="{
+              required: 'هذا الحقل مطلوب',
+           
+            }"
+          ></app-form-input>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service Management Row -->
+    <!-- <div class="form-row service-management">
+            <div class="form-group service-add">
+                <label class="service-label">اضافة خدمة جديدة الى الفرع</label>
+                <div class="service-actions service-actions-inline">
+                    <div class="input-container">
+                      <app-form-input
+                        label=""
+                        placeholder="اضافة خدمة جديدة"
+                        [width]="'400px'"
+                        [height]="'45px'"
+                        formControlName="newServiceName"
+                      ></app-form-input>
+                    </div>
+                    <app-custom-button
+                      [variant]="'primary'"
+                      [size]="'medium'"
+                      (click)="addService()"
+                    >إضافة
+                    </app-custom-button>
+                </div>
+            </div>
+            <div class="form-group service-cancel">
+                <div class="service-actions service-actions-inline">
+                    <div class="input-container dropdown">
+                      <app-multi-select
+                        label="الغاء وتفعيل الخدمة"
+                        [options]="cancelOrDisableServiceOptions"
+                        placeholder="رجاء اختيار الخدمة"
+                        [selectedValues]="selectedCancelOrDisableServiceOptions"
+                        (selectionChange)="onCancelOrDisableServicesChange($event)"
+                      ></app-multi-select>
+                    </div>
+                    <app-custom-button
+                      [variant]="'danger'"
+                      [size]="'medium'"
+                      (click)="cancelService()"
+                    >الغاء
+                    </app-custom-button>
+                    <app-custom-button
+                      [variant]="'secondary'"
+                      [size]="'medium'"
+                      (click)="disableService()"
+                    >تعطيل
+                    </app-custom-button>
+                </div>
+            </div> -->
+    <!-- </div> -->
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+      <app-custom-button
+        [variant]="'primary'"
+        [size]="'large'"
+        [fullWidth]="true"
+        (click)="ConfirmSubmit()"
+        [disabled]="!isFormValid()"
+        >حفظ
+      </app-custom-button>
+      <app-custom-button
+        [variant]="'danger'"
+        [size]="'large'"
+        [fullWidth]="true"
+        (click)="cancelChanges()"
+        >الغاء
+      </app-custom-button>
+    </div>
+  </div>
+</div>

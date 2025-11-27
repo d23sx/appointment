@@ -1,0 +1,99 @@
+.branches-container {
+  background-color: var(--bg);
+  padding: 20px;
+}
+
+/* Custom styling for filter section in this component */
+::ng-deep .branches-container .filter-section-container {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fcff 100%);
+  border: 1px solid #e1e8f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+::ng-deep .branches-container .filter-section-container:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+::ng-deep .branches-container .filters-section {
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  border-bottom: 1px solid #edf2f7;
+}
+
+/* Enhanced filter group styling */
+::ng-deep .branches-container .filter-group {
+  min-width: 180px;
+}
+
+/* Filter labels */
+::ng-deep .branches-container .filter-label {
+  color: #4a5568;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* Filter presets styling */
+::ng-deep .branches-container .filter-presets {
+  padding: 12px 16px;
+  background-color: rgba(247, 250, 252, 0.8);
+}
+
+::ng-deep .branches-container .presets-label {
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 14px;
+  margin-right: 12px;
+}
+
+::ng-deep .branches-container .preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+::ng-deep .branches-container .preset-btn {
+  background: linear-gradient(135deg, #ffffff 0%, #f2f5f9 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 30px;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4a5568;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+::ng-deep .branches-container .preset-btn:hover {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary700) 100%);
+  color: white;
+  border-color: var(--primary700);
+  transform: translateY(-1px);
+}
+
+/* Reset filter button */
+::ng-deep .branches-container .reset-filter-container app-custom-button button {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary700) 100%);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+::ng-deep .branches-container .reset-filter-container app-custom-button button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Date picker container */
+::ng-deep .branches-container .date-picker-container {
+  border-radius: 8px;
+  overflow: hidden;
+}

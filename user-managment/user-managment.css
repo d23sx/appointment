@@ -1,0 +1,10 @@
+.veiw {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 40px;
+  padding: 30px;
+}

@@ -1,0 +1,83 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 38px;
+}
+
+.top-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.filters {
+  display: flex;
+  margin: 5px;
+  gap: 15px;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+#exportBtn {
+  background-color: black;
+  color: white;
+  padding: 10px 40px;
+  border-radius: 10px;
+}
+
+#branch {
+  font-size: 15px;
+  border: 0.2px solid rgba(0, 0, 0, 0.462);
+  padding: 18px;
+  border-radius: 3px;
+  width: 100%;
+}
+
+form {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+#printBtn {
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 40px;
+  border-radius: 10px;
+  width: fit-content;
+  left: -30%;
+  position: relative;
+  transition: opacity 0.3s ease;
+}
+
+#printBtn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+#printBtn.loading {
+  background-color: #666;
+}
+
+#printBtn:disabled:hover {
+  background-color: #ccc;
+}
+label {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 30px;
+}

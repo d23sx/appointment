@@ -1,0 +1,135 @@
+.tickets-attendance-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  box-sizing: border-box;
+  gap: 40px;
+}
+.right-header{
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  gap: 65px;
+}
+.right-header, .right-body, .tickets-attendance-left {
+  background-color: var(--bg);
+  border-radius: 8px;
+  box-shadow: var(--box-shadow-card);
+  border: var(--border-sm);
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.right, .right-body {
+  display: flex;
+  flex-direction: column;
+  /* width:600px; */
+}
+
+.tickets-attendance-right{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.header-top {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.left {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.left app-custom-button{
+  margin-top: 60px;
+}
+.header-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  max-width: 100%;
+  min-width: 100%;
+  gap: 20px;
+}
+
+.input-group{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.input-group h5{
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tickets-attendance-left {
+  width: 25%;
+}
+
+.left-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  gap: 5px;
+}
+
+.left-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.left-header small{
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.left {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.input-group app-select-list {
+  flex: 1;
+}
+
+.right-body {
+  margin-top: 20px;
+  background-color: var(--bg);
+  border-radius: 8px;
+  box-shadow: var(--box-shadow-card);
+  border: var(--border-sm);
+  padding: 0; /* Remove padding since table component handles its own padding */
+}
+
+.right-body reuseable-data-table {
+  width: 100%;
+}
+
+/* Override table styles if needed */
+.right-body .appointments-container {
+  padding: 15px;
+}

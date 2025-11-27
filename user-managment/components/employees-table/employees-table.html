@@ -1,0 +1,26 @@
+<div class="employees-container">
+  <reuseable-data-table
+    [data]="employees"
+    [columns]="tableColumns"
+    [actions]="tableActions"
+    [config]="tableConfig"
+    [filterOptions]="filterOptions"
+    [entityType]="'الموظفين'"
+    [entityIcon]="icons.users"
+    [searchFields]="['name', 'email', 'phone', 'role']"
+    [enableAdvancedFilters]="false"
+    [enableBulkActions]="true"
+    [enableExport]="true"
+    [availableFilters]="{
+      search: true,
+      dateRange: false,
+      dayFilter: false,
+      statusFilter: true,
+      branchFilter: false,
+      customFilters: true
+    }"
+    [customFilters]="customFilters"
+    (searchChange)="onEmployeeSearch($event)"
+    (bulkAction)="onBulkAction($event)">
+  </reuseable-data-table>
+</div>
