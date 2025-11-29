@@ -159,8 +159,7 @@ CREATE TABLE appointment_bahraini
     appointment_id         INT         NOT NULL UNIQUE,
 
     cpr_or_passport_number VARCHAR(25) NOT NULL,
-    full_name              VARCHAR(100),
-    phone_number           VARCHAR(20),
+    phone          VARCHAR(20),
     email                  VARCHAR(255),
     dependents_cpr         VARCHAR(25)[] DEFAULT ARRAY[]::VARCHAR[],
     cpr_count              INT                  DEFAULT 0,
@@ -169,7 +168,7 @@ CREATE TABLE appointment_bahraini
     created_by             INT,
     created_at             TIMESTAMP            DEFAULT CURRENT_TIMESTAMP,
     updated_at             TIMESTAMP            DEFAULT CURRENT_TIMESTAMP,
-    isPortal               boolean              DEFAULT FALSE,
+    is_portal               boolean              DEFAULT FALSE,
     FOREIGN KEY (appointment_id) REFERENCES appointment (id) ON DELETE CASCADE,
     FOREIGN KEY (created_by) REFERENCES users (id)
 );
@@ -195,6 +194,7 @@ CREATE TABLE clearing_agent_appointment
     created_by            INT,
     created_at            TIMESTAMP             DEFAULT CURRENT_TIMESTAMP,
     updated_at            TIMESTAMP             DEFAULT CURRENT_TIMESTAMP,
+    is_portal               boolean              DEFAULT FALSE,
 
     FOREIGN KEY (appointment_id) REFERENCES appointment (id) ON DELETE CASCADE,
     FOREIGN KEY (created_by) REFERENCES users (id)
@@ -208,19 +208,19 @@ CREATE TABLE block
     block_type                VARCHAR(50) NOT NULL, -- 'customer_no_show' or 'time_period'
 
     -- For customer no-shows
-    cpr_or_passport_number    VARCHAR(25),
-    no_show_count             INT                  DEFAULT 0,
+    cpr_or_passport_number    VARCHAR(25) NOT NULL,
+    no_show_count             INT NOT NULL DEFAULT 0,
 
     -- For period-based blocks
-    block_start_date          DATE,
-    block_end_date            DATE,
+    block_start_date          DATE NOT NULL,
+    block_end_date            DATE NOT NULL,
     block_reason              VARCHAR(500),
 
     -- For time blocks
-    site_id                   VARCHAR(25),
-    block_date                DATE,
-    start_time                TIME,
-    end_time                  TIME,
+    site_id                   VARCHAR(25) NOT NULL ,
+    block_date                DATE NOT NULL,
+    start_time                TIME NOT NULL,
+    end_time                  TIME NOT NULL,
 
     is_active                 BOOLEAN     NOT NULL DEFAULT TRUE,
     blocked_by_appointment_id INT,
@@ -273,7 +273,7 @@ CREATE TABLE log
     action_type        VARCHAR(100) NOT NULL,
 
     appointment_id     INT,
-    cpr_or_passport    VARCHAR(25),
+    cpr_or_passport_number    VARCHAR(25),
     site_id            VARCHAR(25),
 
     action_description VARCHAR(500),
