@@ -21,7 +21,7 @@ public class SiteInfo {
     private Long id;
 
     @Column(name = "site_name", nullable = false)
-    private String site_name;
+    private String siteName;
 
     @Column(name = "description")
     private String description;
@@ -42,32 +42,32 @@ public class SiteInfo {
     private String longitude;
     
     @Column(name = "start_time")
-    private LocalTime start_time;
+    private LocalTime startTime;
     
     @Column(name = "end_time")
-    private LocalTime end_time;
+    private LocalTime endTime;
 
     @Column(name = "ticket_start_number", nullable = false)
-    private int ticket_start_number;
+    private int ticketStartNumber;
 
     @Column(name = "ticket_max_number", nullable = false)
-    private int ticket_max_number;
+    private int ticketMaxNumber;
     
-    @Column(name = "is_active", nullable = false)
-    private boolean is_active;
+    @Column(name = "active", nullable = false)
+    private Boolean active;
     
     @Column(name = "is_non_bahraini")
-    private boolean is_non_bahraini;
+    private Boolean isNonBahraini;
     
     @Column(name = "inactive_start_date")
-    private String inactive_start_date;
+    private String inactiveStartDate;
     
     @Column(name = "inactive_end_date")
-    private String inactive_end_date;
+    private String inactiveEndDate;
     
     @Column(name = "created_at")
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
     
     @Column(name = "updated_at")
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 }

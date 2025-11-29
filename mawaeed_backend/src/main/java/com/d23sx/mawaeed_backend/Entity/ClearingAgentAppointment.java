@@ -19,48 +19,49 @@ public class ClearingAgentAppointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "appointment_id", nullable = false)
-    private Long appointment_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "appointment_id", nullable = false)
+    private Appointment appointmentId;
 
     @Column(name = "agent_name", nullable = false)
-    private String agent_name;
+    private String agentName;
 
     @Column(name = "agent_cpr", nullable = false)
-    private String agent_cpr;
+    private String agentCpr;
 
     @Column(name = "agent_cr_number", nullable = false)
-    private String agent_cr_number;
+    private String agentCrNumber;
 
     @Column(name = "agent_phone")
-    private String agent_phone;
+    private String agentPhone;
 
     @Column(name = "agent_email")
-    private String agent_email;
-
+    private String agentEmail;
 
     @Column(name = "applicant_cpr_numbers")
-    private String applicant_cpr_numbers;
+    private String applicantCprNumbers;
 
     @Column(name = "applicant_cpr_count")
-    private int applicant_cpr_count;
+    private int applicantCprCount;
 
     @Column(name = "note")
     private String note;
 
-    @Column(name = "is_active", nullable = false)
-    private boolean is_active;
+    @Column(name = "active", nullable = false)
+    private Boolean active;
 
-    @Column(name = "created_by")
-    private long created_by;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "created_by", nullable = false)
+    private User createdBy;
 
     @Column(name = "created_at")
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 
     @Column(name = "is_portal", nullable = false)
-    private boolean is_portal;
+    private Boolean isPortal;
 
 
 }

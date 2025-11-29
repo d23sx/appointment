@@ -21,11 +21,13 @@ public class Appointment {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "site_id", nullable = false)
-    private Long site_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "site_id", nullable = false)
+    private SiteInfo siteId;
 
-    @Column(name = "slot_id", nullable = false)
-    private Long slot_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "slot_id", nullable = false)
+    private SiteTimeSlot slot_id;
 
     @Column(name = "appointment_date", nullable = false)
     private LocalDate appointment_date;
@@ -58,20 +60,20 @@ public class Appointment {
     private Long employee_id;
 
     @Column(name = "is_rescheduled")
-    private boolean is_rescheduled;
+    private Boolean is_rescheduled;
 
     @Column(name = "rescheduled_from_appointment_id")
     private long rescheduled_from_appointment_id;
 
-    @Column(name = "is_active", nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
-    private boolean is_active;
+    @Column(name = "active", nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private Boolean active;
 
     @Column(name = "created_by")
     private long created_by;
 
     @Column(name = "created_at")
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 }

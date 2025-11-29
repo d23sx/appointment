@@ -17,15 +17,17 @@ public class OpenDayLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "site_id", nullable = false)
-    private Long site_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "site_id", nullable = false)
+    private SiteInfo siteId;
 
     @Column(name = "open_date", nullable = false)
-    private String open_date;
+    private String openDate;
 
-    @Column(name = "created_by", nullable = false)
-    private Long created_by;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "created_by", nullable = false)
+    private User createdBy;
 
     @Column(name = "created_at")
-    private String created_at;
+    private String createdAt;
 }

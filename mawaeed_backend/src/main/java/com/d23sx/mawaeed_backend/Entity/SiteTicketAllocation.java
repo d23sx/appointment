@@ -19,25 +19,26 @@ public class SiteTicketAllocation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "site_id", nullable = false)
-    private long site_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "site_id", nullable = false)
+    private SiteInfo siteId;
 
     @Column(name = "allocation_date", nullable = false)
-    private String allocation_date;
+    private String allocationDate;
 
     @Column(name = "start_number", nullable = false)
-    private int start_number;
+    private int startNumber;
 
     @Column(name = "next_available_number", nullable = false)
-    private int next_available_number;
+    private int nextAvailableNumber;
 
-    @Column(name = "is_active", nullable = false)
-    private boolean is_active;
+    @Column(name = "active", nullable = false)
+    private Boolean active;
 
     @Column(name = "created_at")
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 
 }

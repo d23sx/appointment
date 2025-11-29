@@ -19,38 +19,40 @@ public class Log {
     private Long id;
 
     @Column(name = "user_id", nullable = false)
-    private Long user_id;
+    private Long userId;
 
     @Column(name = "action_type", nullable = false)
-    private String action_type;
+    private String actionType;
 
-    @Column(name = "appointment_id")
-    private Long appointment_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "appointment_id", nullable = false)
+    private Appointment appointmentId;
 
     @Column(name = "cpr_or_passport_number")
-    private String cpr_or_passport_number;
+    private String cprOrPassportNumber;
 
-    @Column(name = "site_id", nullable = false)
-    private Long site_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "site_id", nullable = false)
+    private SiteInfo siteId;
 
     @Column(name = "action_description", nullable = false)
-    private String action_description;
+    private String actionDescription;
 
     @Column(name = "table_name", nullable = false)
-    private String table_name;
+    private String tableName;
 
     @Column(name = "old_value")
-    private String old_value;
+    private String oldValue;
 
     @Column(name = "new_value")
-    private String new_value;
+    private String newValue;
 
     @Column(name = "ip_address")
-    private String ip_address;
+    private String ipAddress;
 
     @Column(name = "user_agent")
-    private String user_agent;
+    private String userAgent;
 
     @Column(name = "created_at")
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 }

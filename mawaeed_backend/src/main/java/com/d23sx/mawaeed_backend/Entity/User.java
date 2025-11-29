@@ -20,33 +20,34 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "user_role_id", nullable = false, unique = true)
-    private Long user_role_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_role_id", nullable = false)
+    private UserRole userRole; //foreign key to UserRole entity
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
     @Column(name = "ar_name", nullable = false)
-    private String ar_name;
+    private String arName;
 
     @Column(name = "eng_name", nullable = false)
-    private String eng_name;
+    private String engName;
 
     @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "phone_number")
-    private String phone_number;
+    private String phoneNumber;
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "is_active", nullable = false)
-    private boolean is_active;
+    @Column(name = "active", nullable = false)
+    private Boolean active;
 
     @Column(name = "created_at")
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 }

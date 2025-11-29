@@ -20,47 +20,50 @@ public class Block {
     private Long id;
 
     @Column(name = "block_type", nullable = false)
-    private String block_type;
+    private String blockType;
 
     @Column(name = "cpr_or_passport_number", nullable = false)
-    private String cpr_or_passport_number;
+    private String cprOrPassportNumber;
 
     @Column(name = "no_show_count", nullable = false)
-    private int no_show_count;
+    private int noShowCount;
 
     @Column(name = "block_start_date", nullable = false)
-    private String block_start_date;
+    private String blockStartDate;
 
     @Column(name = "block_end_date", nullable = false)
-    private String block_end_date;
+    private String blockEndDate;
 
     @Column(name = "block_reason", nullable = false)
     private String block_reason;
 
-    @Column(name = "site_id", nullable = false)
-    private Long site_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "site_id", nullable = false)
+    private SiteInfo siteId;
 
     @Column(name = "block_date")
-    private String block_date;
+    private String blockDate;
 
     @Column(name = "start_time")
-    private String start_time;
+    private String startTime;
 
     @Column(name = "end_time")
-    private String end_time;
+    private String endTime;
 
-    @Column(name = "is_active", nullable = false)
-    private boolean is_active;
+    @Column(name = "active", nullable = false)
+    private Boolean active;
 
-    @Column(name = "blocked_by_appointment_id")
-    private Long blocked_by_appointment_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "blocked_by_appointment_id", nullable = false)
+    private User blockedByAppointmentId;
 
-    @Column(name = "created_by")
-    private long created_by;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "created_by", nullable = false)
+    private User createdBy;
 
     @Column(name = "created_at")
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 }

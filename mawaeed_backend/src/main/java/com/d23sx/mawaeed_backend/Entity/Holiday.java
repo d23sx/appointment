@@ -20,28 +20,30 @@ public class Holiday {
     private Long id;
 
     @Column(name = "holiday_name", nullable = false)
-    private String holiday_name;
+    private String holidayName;
+
     @Column(name = "start_holiday_date", nullable = false)
-    private LocalDateTime start_holiday_date;
+    private LocalDateTime startHolidayDate;
 
     @Column(name = "end_holiday_date", nullable = false)
-    private LocalDateTime end_holiday_date;
+    private LocalDateTime endHolidayDate;
 
     @Column(name = "holiday_description", nullable = false)
-    private String holiday_description;
+    private String holidayDescription;
 
     @Column(name = "reminder_before")
-    private int reminder_before;
+    private int reminderBefore;
 
-    @Column(name = "is_active", nullable = false)
-    private boolean is_active;
+    @Column(name = "active", nullable = false)
+    private Boolean active;
 
-    @Column(name = "created_by", nullable = false)
-    private long created_by;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "created_by", nullable = false)
+    private User createdBy;
 
     @Column(name = "created_at")
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 }

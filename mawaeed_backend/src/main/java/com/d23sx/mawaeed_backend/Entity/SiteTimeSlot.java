@@ -20,37 +20,39 @@ public class SiteTimeSlot {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "site_id", nullable = false)
-    private long site_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "site_id", nullable = false)
+    private SiteInfo siteId;
 
     @Column(name = "slot_id", nullable = false)
-    private long slot_id;
+    private long slotId;
 
     @Column(name = "start_time")
-    private LocalTime start_time;
+    private LocalTime startTime;
 
     @Column(name = "end_time")
-    private LocalTime end_time;
+    private LocalTime endTime;
 
     @Column(name = "slot_duration_minutes")
-    private int slot_duration_minutes;
+    private int slotDurationMinutes;
 
     @Column(name = "max_limit")
-    private int max_limit;
+    private int maxLimit;
 
     @Column(name = "available_days")
-    private List<Integer> available_days;
+    private List<Integer> availableDays;
 
-    @Column(name = "is_active", nullable = false)
-    private boolean is_active;
+    @Column(name = "active", nullable = false)
+    private Boolean active;
 
-    @Column(name = "created_by")
-    private long created_by;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "created_by", nullable = false)
+    private User createdBy;
 
     @Column(name = "created_at")
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 
 }

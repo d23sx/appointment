@@ -20,32 +20,39 @@ public class AppointmentRescheduledLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "appointment_id", nullable = false)
-    private Long appointment_id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "appointment_id", nullable = false)
+    private Appointment appointmentId;
 
     @Column(name = "old_appointment_date", nullable = false)
-    private LocalDate old_appointment_date;
+    private LocalDate oldAppointmentDate;
 
-    @Column(name = "old_site_id", nullable = false)
-    private Long old_site_id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "site_id", nullable = false)
+    private SiteInfo oldSiteId;
 
 
     @Column(name = "old_appointment_time", nullable = false)
-    private LocalTime old_appointment_time;
+    private LocalTime oldAppointmentTime;
 
     @Column(name = "new_appointment_date", nullable = false)
-    private LocalDate new_appointment_date;
+    private LocalDate newAppointmentDate;
 
-    @Column(name = "new_site_id", nullable = false)
-    private Long new_site_id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "site_id", nullable = false)
+    private SiteInfo newSiteId;
 
     @Column(name = "new_appointment_time", nullable = false)
-    private LocalTime new_appointment_time;
+    private LocalTime newAppointmentTime;
 
-    @Column(name = "rescheduled_by", nullable = false)
-    private Long rescheduled_by;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "rescheduled_by", nullable = false)
+    private User rescheduledBy;
 
     @Column(name = "rescheduled_at")
-    private String rescheduled_at;
+    private LocalTime rescheduledAt;
 
 }

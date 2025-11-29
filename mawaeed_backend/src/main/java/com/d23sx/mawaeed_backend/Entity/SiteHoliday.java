@@ -19,12 +19,14 @@ public class SiteHoliday {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "site_id", nullable = false)
-    private long site_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "site_id", nullable = false)
+    private SiteInfo siteId;
 
-    @Column(name = "holiday_id", nullable = false)
-    private long holiday_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "holiday_id", nullable = false)
+    private Holiday holidayId;
 
     @Column(name = "created_at")
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 }
