@@ -15,35 +15,38 @@ import java.time.LocalTime;
 @Getter
 @Setter
 @Table(name = "appointment")
-public class appointment {
+public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "site_id")
+    @Column(name = "site_id", nullable = false)
     private Long site_id;
 
-    @Column(name = "slot_id")
+    @Column(name = "slot_id", nullable = false)
     private Long slot_id;
 
-    @Column(name = "appointment_date")
+    @Column(name = "appointment_date", nullable = false)
     private LocalDate appointment_date;
 
-    @Column(name = "appointment_time")
+    @Column(name = "appointment_time", nullable = false)
     private LocalTime appointment_time;
 
     @Column(name = "appointment_type")
     private String appointment_type;
 
-    @Column(name = "appointment_number")
+    @Column(name = "appointment_number", nullable = false)
     private int appointment_number;
 
-    @Column(name = "phone_number")
+    @Column(name = "phone_number", nullable = false)
     private String phone_number;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
+
+    @Column(name = "status", nullable = false)
+    private String status;
 
     @Column(name = "status_reason")
     private String status_reason;
@@ -60,7 +63,7 @@ public class appointment {
     @Column(name = "rescheduled_from_appointment_id")
     private long rescheduled_from_appointment_id;
 
-    @Column(name = "is_active")
+    @Column(name = "is_active", nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
     private boolean is_active;
 
     @Column(name = "created_by")
